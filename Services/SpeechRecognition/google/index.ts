@@ -30,13 +30,12 @@ class GoogleSpeechToText {
     this.stream = stream;
   }
 
-  startListening(onComplete: (text: string) => void, debounceMs = 1500) {
+  startListening(onComplete: (text: string) => void, debounceMs = 500) {
     let buffer = "";
     let timer: NodeJS.Timeout | null = null;
 
     this.stream.on("data", (response: IStreamingRecognizeResponse) => {
       const result = response.results?.[0];
-      console.log("Resultado:", result);
       if (!result?.isFinal) return;
 
       const transcript = result.alternatives?.[0]?.transcript ?? "";
