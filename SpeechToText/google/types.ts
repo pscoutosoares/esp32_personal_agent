@@ -1,8 +1,14 @@
 import { protos } from "@google-cloud/speech";
 
-export type StreamingRecognizeConfig =
+type StreamingRecognizeConfig =
   protos.google.cloud.speech.v1.IRecognitionConfig;
-export type IStreamingRecognizeResponse =
+type IStreamingRecognizeResponse =
   protos.google.cloud.speech.v1.IStreamingRecognizeResponse;
-export type IStreamingRecognitionConfig =
+type IStreamingRecognitionConfig =
   protos.google.cloud.speech.v1.IStreamingRecognitionConfig;
+
+export type {
+  StreamingRecognizeConfig,
+  IStreamingRecognizeResponse,
+  IStreamingRecognitionConfig,
+};

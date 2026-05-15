@@ -1,5 +1,5 @@
 import { SerialPort } from "serialport";
-import GoogleSpeechToText from "./SpeechToText/google";
+import GoogleSpeechToText from "./SpeechToText/google/index.ts";
 
 const port = new SerialPort({
   path: "COM4",
@@ -10,6 +10,7 @@ async function main() {
   let capturando = false;
   const SpeechObject = new GoogleSpeechToText();
   SpeechObject.createNewStream();
+  SpeechObject.startListening();
 
   port.on("open", () => {
     console.log("Porta COM4 aberta. Aguardando estabilizacao...");

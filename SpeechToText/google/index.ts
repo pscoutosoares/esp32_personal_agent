@@ -1,9 +1,9 @@
 import { SpeechClient } from "@google-cloud/speech";
-import {
+import type {
   StreamingRecognizeConfig,
   IStreamingRecognizeResponse,
   IStreamingRecognitionConfig,
-} from "./types";
+} from "./types.ts";
 
 const config: StreamingRecognizeConfig = {
   encoding: "LINEAR16",
@@ -30,7 +30,7 @@ class GoogleSpeechToText {
     this.stream = stream;
   }
 
-  listenToStream() {
+  startListening() {
     this.stream.on("data", (response: IStreamingRecognizeResponse) => {
       console.log(response.results?.[0].alternatives?.[0].transcript);
     });
