@@ -10,7 +10,9 @@ async function main() {
   let capturando = false;
   const SpeechObject = new GoogleSpeechToText();
   SpeechObject.createNewStream();
-  SpeechObject.startListening();
+  SpeechObject.startListening((text) => {
+    console.log("Frase completa:", text);
+  });
 
   port.on("open", () => {
     console.log("Porta COM4 aberta. Aguardando estabilizacao...");

@@ -30,9 +30,24 @@ class GoogleSpeechToText {
     this.stream = stream;
   }
 
-  startListening() {
+  startListening(onComplete: (text: string) => void, debounceMs = 1500) {
+    let buffer = "";
+    let timer: NodeJS.Timeout | null = null;
+
     this.stream.on("data", (response: IStreamingRecognizeResponse) => {
-      console.log(response.results?.[0].alternatives?.[0].transcript);
+      const result = response.results?.[0];
+      console.log("Resultado:", result);
+      if (!result?.isFinal) return;
+
+      const transcript = result.alternatives?.[0]?.transcript ?? "";
+      buffer += (buffer ? " " : "") + transcript;
+
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        onComplete(buffer.trim());
+        buffer = "";
+        timer = null;
+      }, debounceMs);
     });
     this.stream.on("error", (err: Error) => {
       console.log(err);
