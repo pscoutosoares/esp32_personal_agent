@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($path = \"C:\\\\Users\\\\Pedro\\\\OneDrive\\\\Área de Trabalho\\\\cv\\\\porcupine-1.9\"; if \\(Test-Path $path\\) { Get-ChildItem -Path $path -Recurse -Depth 3 | ForEach-Object { \"$\\($_.FullName\\) [$\\(if \\($_.PSIsContainer\\) { 'DIR' } else { 'FILE' }\\)]\" } } else { \"Path does not exist\" })",
+      "Bash(xargs grep -l \"FrontendConfig\\\\|FrontendState\\\\|FrontendProcessSamples\")"
+    ]
+  }
+}
